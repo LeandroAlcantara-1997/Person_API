@@ -3,7 +3,6 @@ package com.github.LeandroAlcantara1997.Person_API_REST.controller;
 
 import com.github.LeandroAlcantara1997.Person_API_REST.dto.request.PersonDTO;
 import com.github.LeandroAlcantara1997.Person_API_REST.dto.response.MessageResponseDTO;
-import com.github.LeandroAlcantara1997.Person_API_REST.entity.Person;
 import com.github.LeandroAlcantara1997.Person_API_REST.exception.PersonNotFoundException;
 import com.github.LeandroAlcantara1997.Person_API_REST.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,12 @@ public class PersonController {
     @GetMapping("/{id}")
     public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
         return personService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
+        personService.delete(id);
     }
 
 }
